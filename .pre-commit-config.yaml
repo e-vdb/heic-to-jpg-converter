@@ -54,22 +54,32 @@ repos:
         pass_filenames: false
       - id: ruff-check
         name: ruff check
-        entry: ruff check
-        args: ["--force-exclude", "--extend-fixable=ERA001,F401,F841,T201,T203", "--fix-only"]
+        entry: uv
+        args:
+            [
+            "run",
+            "--group",
+            "dev",
+            "ruff",
+            "check",
+            "--force-exclude",
+            "--extend-fixable=ERA001,F401,F841,T201,T203",
+            "--fix-only",
+            ]
         require_serial: true
         language: system
         types_or: [python, pyi]
       - id: ruff-format
         name: ruff format
-        entry: ruff format
-        args: [--force-exclude]
+        entry: uv
+        args: [ "run", "--group", "dev", "ruff", "format", "--force-exclude" ]
         require_serial: true
         language: system
         types_or: [python, pyi]
       - id: mypy
         name: mypy
-        entry: mypy
-        args: ["src"]
+        entry: uv
+        args: [ "run", "--group", "dev", "mypy", "src" ]
         language: system
         types: [python]
         pass_filenames: false
